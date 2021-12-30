@@ -4,6 +4,8 @@
 
 # Imports 
 from utils import authenticate_twitter_api, connect_to_database
+import sys 
+
 import tweepy
 import pandas as pd
 
@@ -34,18 +36,14 @@ def get_list_members(list_id):
 
 #Running
 if __name__ == "__main__":
+    
     try:
-        # get the api
-        try:
-            cli = authenticate_twitter_api()
-        except :
-            print("Could not Reach Twitter API")
+        cli = authenticate_twitter_api()
+        engine = connect_to_database()
+    except Exception as e:
+        sys.exit(f"Connection Error: {e}")
 
-        try:
-            engine = connect_to_database()
-        except: 
-            print("Could not connect to Database")
-
+    try:
         # Get user pollytix_GMBH where Lists are saved
         pollytix = cli.get_user(username = "pollytix_gmbh")
         pollytix_id = pollytix.data["id"]
@@ -87,4 +85,4 @@ if __name__ == "__main__":
         user_df.to_sql("users", engine, if_exists="replace")
 
     except Exception as e:
-        print(e)
+        print(f"Functional Error: {e}")

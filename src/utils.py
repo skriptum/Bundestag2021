@@ -6,6 +6,8 @@
 from os import getenv
 from dotenv import load_dotenv
 
+from tweepy import Client
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -13,8 +15,8 @@ from sqlalchemy.orm import sessionmaker
 def authenticate_twitter_api():
     """ authenticates with the twitter api, returns an client object from the tweepy library"""
     load_dotenv()
-    TWITTER_BEARER_TOKEN = os.getenv("TWITTER_BEARER_TOKEN")
-    cli = tweepy.Client(TWITTER_BEARER_TOKEN)
+    TWITTER_BEARER_TOKEN = getenv("TWITTER_BEARER_TOKEN")
+    cli = Client(TWITTER_BEARER_TOKEN)
     return cli   
 
 
@@ -29,8 +31,4 @@ def connect_to_database():
     engine = create_engine(URL)
     engine.connect()
 
-    #create the connection
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    return session
+    return engine

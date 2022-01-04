@@ -5,6 +5,7 @@
 # Imports
 from os import getenv
 from dotenv import load_dotenv
+from numpy.lib.npyio import load
 
 from tweepy import Client
 
@@ -32,3 +33,9 @@ def connect_to_database():
     engine.connect()
 
     return engine
+
+
+def get_mapbox_token()
+    load_dotenv()
+    token = ["MAPBOX_ACCESS_TOKEN"]
+    

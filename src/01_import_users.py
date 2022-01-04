@@ -51,13 +51,13 @@ if __name__ == "__main__":
 
         # get lists from polyltix and name them accordingly
         parteien_listen = {}
-        parteien_listen["cdu"] = pollytix_listen.data[1].id
-        parteien_listen["spd"] = pollytix_listen.data[2].id
-        parteien_listen["linke"] = pollytix_listen.data[3].id
-        parteien_listen["gruene"] = pollytix_listen.data[4].id
-        parteien_listen["afd"] = pollytix_listen.data[5].id
-        parteien_listen["csu"] = pollytix_listen.data[6].id
-        parteien_listen["fdp"] = pollytix_listen.data[7].id
+        parteien_listen["CDU"] = pollytix_listen.data[1].id
+        parteien_listen["SPD"] = pollytix_listen.data[2].id
+        parteien_listen["DIE LINKE"] = pollytix_listen.data[3].id
+        parteien_listen["GRÜNE"] = pollytix_listen.data[4].id
+        parteien_listen["AfD"] = pollytix_listen.data[5].id
+        parteien_listen["CSU"] = pollytix_listen.data[6].id
+        parteien_listen["FDP"] = pollytix_listen.data[7].id
 
         #Create the central dataframe
         user_df = pd.DataFrame()

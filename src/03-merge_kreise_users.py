@@ -20,7 +20,7 @@ kreise_df = pd.read_csv(
     "../data/raw/Wahlergebnisse_Kreise.csv", 
     delimiter=";", 
     skiprows=list(range(0,8)), 
-    usecols=["Titel", "Namenszusatz", "Nachname", "Vornamen", "Gebietsart", "Gebietsnummer", "Gebietsname"]
+    usecols=["Nachname", "Vornamen", "Gebietsart", "Gebietsnummer", "Gebietsname", "Gruppenname"]
     )
 # clean this mess
 
@@ -54,6 +54,7 @@ EMOJI_PATTERN = re.compile(
 
 users_df.name = users_df.name.str.replace(EMOJI_PATTERN, "")
 users_df.name = users_df.name.str.replace("MdB","")
+users_df.name = users_df.name.str.strip(",")
 users_df.name = users_df.name.str.strip()
 
 #%%
@@ -63,7 +64,31 @@ merged_df = pd.merge(kreise_df, users_df, left_on="Name", right_on="name", how =
 #%%
 #now we have to work ourselves
 merged_df.to_csv("../data/raw/kreise_users.csv")
-###merged_df.to_csv("../data/intermediate/kreise_users_edit.csv")
+###merged_df.to_csv("../data/intermediate/kreise_users_edit.csv") # dont overwrite !!
+
+
+# %%
+
+
+
+# This was a mishap, i forgot to include the partei Name from every Wahlkreis
+#so i read everything back in
+back_df = pd.read_csv("../data/intermediate/kreise_users_edited.csv")
+back_df = back_df.drop(columns = ['Unnamed: 0', 'Titel', 'Namenszusatz'])
+
+#and connected it to another DF with the Partei Name (VerknGruppenName)
+Verknüpfungs_df = pd.read_csv(
+    "../data/raw/Wahlergebnisse_Kreise.csv", 
+    sep=";", skiprows=list(range(0,8)),
+    usecols=["Gebietsnummer", "Gebietsart", "Gruppenname"]
+    )
+
+Verknüpfungs_df = Verknüpfungs_df[Verknüpfungs_df.Gebietsart == "Wahlkreis"] 
+Verknüpfungs_df = Verknüpfungs_df.drop(columns=["Gebietsart"])
+final_df = pd.merge(back_df, Verknüpfungs_df, on = "Gebietsnummer", how = "left")
+
+final_df.to_sql("wahlkreise", engine, if_exists="replace")
+
 
 
 # %%

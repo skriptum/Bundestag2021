@@ -14,10 +14,21 @@
 2. Hochladen dieses GeoJSONs auf [mapshaper.org](mapshaper.org) und dort Verkleinerung
 3. Erstelle eine *config.ini*-Datei mit deinen Twitter-Zugangsdaten im Format 
     
-### TODO
+### GOALS
 
-- alles zu .env Files wechseln wegen bearer token
-- import.py für Herunterladen der Listen
-    - Funktion zum Austricksen der Pagination 
-    - Speichern der einzelnen Parteien in Txt-Dateien
-- fetch.py für Herunterladen der Tweets+ Nutzer-Daten
+Graphics showing
+
+### Was gerade im BT abgeht (generell)
+- meistgenutzte Hashtags
+- erfolgreichster Tweet
+- heutige Anzahl Tweets
+- Vergleich aller Parteien Followers (treemap)
+
+### persönlichs Twitter Profil
+- Platzierung Follower, etc
+- Kategorie (retweeter, meinung, antworter, mischung)
+
+### Vergleichsportal
+Vergleich von Kategorien (Anzahl Tweets, Follower, ...)
+- als Siegertreppchen
+- auf Karte angewendet

@@ -38,4 +38,5 @@ def connect_to_database():
 def get_mapbox_token()
     load_dotenv()
     token = ["MAPBOX_ACCESS_TOKEN"]
+    return token
     

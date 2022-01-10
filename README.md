@@ -32,3 +32,6 @@ Graphics showing
 Vergleich von Kategorien (Anzahl Tweets, Follower, ...)
 - als Siegertreppchen
 - auf Karte angewendet
+
+## HEROKU SOLUTION
+https://medium.com/@shalandy/deploy-git-subdirectory-to-heroku-ea05e95fce1f

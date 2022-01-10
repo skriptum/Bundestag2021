@@ -35,8 +35,8 @@ def connect_to_database():
     return engine
 
 
-def get_mapbox_token()
+def get_mapbox_token():
     load_dotenv()
-    token = ["MAPBOX_ACCESS_TOKEN"]
+    token = getenv("MAPBOX_ACCESS_TOKEN")
     return token
     

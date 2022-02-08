@@ -6,7 +6,6 @@
 # Imports
 from sqlalchemy.sql.functions import user
 from utils import authenticate_twitter_api, connect_to_database
-import sys
 import pandas as pd
 
 from sqlalchemy import MetaData
@@ -55,8 +54,8 @@ def parse_tweet(tweet):
     try:
         hashtag_string = ""
         for hashtag in tweet.entities["hashtags"]:
-            hashtag_string += hashtag["tag"]
-        tweet_df["hashtags"] = hashtag_string + ","
+            hashtag_string += hashtag["tag"] + "|"
+        tweet_df["hashtags"] = hashtag_string
     except:
         tweet_df["hashtags"] = None
 
@@ -72,11 +71,9 @@ def parse_tweet(tweet):
 # Runtime
 if __name__ == "__main__":
     # connect to services
-    try:
-        cli = authenticate_twitter_api()
-        engine = connect_to_database()
-    except Exception as e:
-        sys.exit(f"Connection Error: {e}")
+    cli = authenticate_twitter_api()
+    engine = connect_to_database()
+
 
     #get the user ids from the table
     user_ids = pd.read_sql_table("users", engine, columns=["id"]).id 

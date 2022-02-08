@@ -21,7 +21,7 @@ Graphics showing
 ### Was gerade im BT abgeht (generell)
 - meistgenutzte Hashtags
 - erfolgreichster Tweet
-- heutige Anzahl Tweets
+- ~~heutige Anzahl Tweets~~ nicht möglich
 - Vergleich aller Parteien Followers (treemap)
 
 ### persönlichs Twitter Profil
@@ -35,3 +35,4 @@ Vergleich von Kategorien (Anzahl Tweets, Follower, ...)
 
 ## HEROKU SOLUTION
 https://medium.com/@shalandy/deploy-git-subdirectory-to-heroku-ea05e95fce1f
+
